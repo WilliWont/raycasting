@@ -9,9 +9,64 @@
       margin:0;
       padding:0;
     }
+    body{
+      position:relative;
+      background-color: rgb(40,40,40);
+    }
+    .clickable-tab{
+      transition: ease .2s;
+      position:absolute;
+      display:block;
+      background-color: rgba(40,40,40,.2);
+      color:rgb(240,240,240);
+      right:1vw;
+      width:14vw;
+      height:30vh;
+      z-index: 2;
+    }
+    .tab-open{
+      transition: ease .2s;
+      top:0;
+    }
+    .tab-close{
+      transition: ease .2s;
+      top:-28vh;
+    }
+    .tab-arrow{
+      transition: ease .25s;
+      position:absolute;
+      bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: .5vh 0em;
+      font-size:1vh;
+      background-color: rgba(40,40,40,.25);
+      width:100%;
+    }
+
+    .tab-arrow:hover{
+      transition: ease .25s;
+      cursor: pointer;
+      background-color: rgba(40,40,40,.7);
+    }
+
+    .text-flip{
+      transition: ease .2s;
+      transform:rotate(180deg);
+    }
+
   </style>
 </head>
 <body>
+
+  <div class = "clickable-tab tab-open" id = "setting-tab">
+    <!-- <input type="range" min="1" max="100" value="1" class="slider" id="myRange"> -->
+    <div class = "tab-arrow" onclick="toggleTab()">
+      <div class = "text-upright" id = "setting-tab-arrow">▼</div>
+    </div>
+  </div>
+
   <script src="js/p5.js"></script>
   <!-- <script src="js/gravity.js"></script> -->
   <script src="js/ball.js"></script>

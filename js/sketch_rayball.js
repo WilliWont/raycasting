@@ -3,6 +3,26 @@ let balls = [];
 let boundaries = [];
 let raysources = [];
 let colors_balls = [];
+let tabClosed = false;
+let settingElem = document.getElementById("setting-tab");
+let settingArrow = document.getElementById("setting-tab-arrow");
+let settingLoc = settingElem.getBoundingClientRect();
+
+function toggleTab(){
+  tabClosed = settingElem.classList.contains('tab-close');
+  if(tabClosed){
+    settingElem.classList.add('tab-open');
+    settingElem.classList.remove('tab-close');
+    settingArrow.classList.remove("text-flip");
+    tabClosed = false;
+  } else {
+    settingElem.classList.add('tab-close');
+    settingElem.classList.remove('tab-open');
+    settingArrow.classList.add("text-flip");
+    settingLoc = settingElem.getBoundingClientRect();
+    tabClosed = true;
+  }
+}
 
 function setup(){
   createCanvas(windowWidth,windowHeight);
@@ -49,7 +69,12 @@ function draw(){
   //raysources[0].look(boundaries);
 
   for(let ball of balls){
-    if(mouseIsPressed)
+    if(mouseIsPressed && 
+      (tabClosed || 
+        !(mouseX > settingLoc.left &&
+           mouseX < settingLoc.right &&
+            mouseY > settingLoc.top && 
+            mouseY < settingLoc.bottom)))
       ball.followMouse();
 
     
